@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OrdemDeServico_subreportItens" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="3da20a1f-d6fa-477b-8e88-6df56bf7abef">
+    <property name="ireport.zoom" value="1.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <queryString>
+		<![CDATA[]]>
+    </queryString>
+    <field name="quantidade" class="java.math.BigDecimal">
+        <fieldDescription><![CDATA[quantidade]]></fieldDescription>
+    </field>
+    <field name="idItemOrdemServico" class="java.lang.Long">
+        <fieldDescription><![CDATA[idItemOrdemServico]]></fieldDescription>
+    </field>
+    <field name="idProduto" class="hermes.ejb.entidades.Produto">
+        <fieldDescription><![CDATA[idProduto]]></fieldDescription>
+    </field>
+    <detail>
+        <band height="20" splitType="Stretch">
+            <textField>
+                <reportElement x="0" y="0" width="40" height="20" uuid="12941f4e-72fd-4abf-900b-df5031eabe29"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[""+$F{idProduto}.getIdProduto();]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="277" y="0" width="57" height="20" uuid="849ca384-3913-4c4e-901e-f1003bc7e504"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$F{quantidade}.doubleValue();]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="62" y="0" width="195" height="20" uuid="3af1ed1e-86a0-400b-a296-7772bfc2ff85"/>
+                <textFieldExpression><![CDATA[""+$F{idProduto}]]></textFieldExpression>
+            </textField>
+            <textField pattern="R$ #,##0.00;R$ -#,##0.00">
+                <reportElement x="382" y="0" width="57" height="20" uuid="799e40f7-4442-4cbc-81cc-6c272fd65e50"/>
+                <textFieldExpression><![CDATA[$F{idProduto}.getEstoqueList().get(0).getValorVenda().doubleValue();]]></textFieldExpression>
+            </textField>
+            <textField pattern="R$ #,##0.00;R$ -#,##0.00">
+                <reportElement x="482" y="0" width="57" height="20" uuid="d6b6465d-72a6-46e5-979d-21bf206358f0"/>
+                <textFieldExpression><![CDATA[($F{idProduto}.getEstoqueList().get(0).getValorVenda().doubleValue()*$F{quantidade}.doubleValue());]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

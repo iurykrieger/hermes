@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OrdemDeServico_subreportItensExternos" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c67e6d0b-10cb-4227-8e45-b6b8af3e8dea">
+    <property name="ireport.zoom" value="1.0"/>
+    <property name="ireport.x" value="0"/>
+    <property name="ireport.y" value="0"/>
+    <property name="ireport.layers" value="##Thu Apr 30 19:03:19 BRT 2015\nlayer.0.name=Background\nlayer.0.visible=true\nlayer.0.id=0"/>
+    <queryString>
+		<![CDATA[]]>
+    </queryString>
+    <field name="valorVenda" class="java.math.BigDecimal">
+        <fieldDescription><![CDATA[valorVenda]]></fieldDescription>
+    </field>
+    <field name="quantidade" class="java.math.BigDecimal">
+        <fieldDescription><![CDATA[quantidade]]></fieldDescription>
+    </field>
+    <field name="nome" class="java.lang.String">
+        <fieldDescription><![CDATA[nome]]></fieldDescription>
+    </field>
+    <field name="idItemExternoOrdemServico" class="java.lang.Long">
+        <fieldDescription><![CDATA[idItemExternoOrdemServico]]></fieldDescription>
+    </field>
+    <variable name="subtotal" class="java.lang.Double" resetType="None" calculation="Sum">
+        <variableExpression><![CDATA[$F{valorVenda}.doubleValue()+$V{subtotal}]]></variableExpression>
+        <initialValueExpression><![CDATA[0]]></initialValueExpression>
+    </variable>
+    <group name="itens">
+        <groupExpression><![CDATA[$V{subtotal}]]></groupExpression>
+    </group>
+    <detail>
+        <band height="20" splitType="Stretch">
+            <textField pattern="R$ #,##0.00;R$ -#,##0.00">
+                <reportElement x="482" y="0" width="57" height="20" uuid="6fdd4e61-79cb-4160-9b62-592b30baff7e"/>
+                <textFieldExpression><![CDATA[($F{quantidade}.doubleValue()*$F{valorVenda}.doubleValue())]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="62" y="0" width="195" height="20" uuid="72ab93e5-e0c9-47b6-9c16-79aaa61f101b"/>
+                <textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="0" y="0" width="40" height="20" uuid="49e540c3-cef9-465c-9a07-1d6c350ab26d"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$F{idItemExternoOrdemServico}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="277" y="0" width="57" height="20" uuid="0696690f-49e5-403b-8312-53111b28b839"/>
+                <textElement textAlignment="Center"/>
+                <textFieldExpression><![CDATA[$F{quantidade}.doubleValue();]]></textFieldExpression>
+            </textField>
+            <textField pattern="R$ #,##0.00;R$ -#,##0.00">
+                <reportElement x="382" y="0" width="57" height="20" uuid="2886f9eb-e8e0-4e08-b42b-7bc538e5469d"/>
+                <textFieldExpression><![CDATA[$F{valorVenda}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>
